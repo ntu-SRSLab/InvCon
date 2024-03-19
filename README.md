@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# InvCon
-=======
 # InvCon: Automated Invariant Generation for Solidity Smart Contracts 
 ---
 The latest version of this repo can be found at.
@@ -32,4 +29,3 @@ If successful, at the end of the command line output should look similar to the 
 
 + Training Testing 
 + Transaction Slice 
->>>>>>> c52b818 (create invcon repo)
