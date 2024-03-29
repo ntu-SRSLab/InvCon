@@ -13,7 +13,7 @@ def main(address, configuration=None, maxCount=500, minSupport=50, training_rati
     logging.RootLogger.root.handlers = []
     handlers = [logging.FileHandler(os.path.join(RESULT_DIR, '../invcon.log'), 'w', encoding='utf-8'),
                 logging.StreamHandler()]
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%H:%M:%S',
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%H:%M:%S',
                         handlers=handlers)
 
     if training_ratio is not None:
