@@ -29,24 +29,76 @@ Time estimation: 2 minutes (on modern hardware with good network condition)
 
 If successful, at the end of the command line output should look similar to the following:
 ```sh
-11:07:41 [WARNING] 0x7e0178e1720e8b3a52086a23187947f35b6f3fc4
-11:07:41 [WARNING] cached record number 2893
-11:07:45 [WARNING] 0x7e0178e1720e8b3a52086a23187947f35b6f3fc4 has transactions no less than 500
-11:07:45 [WARNING] size of transactions to analyze:500
-|████████████████████████████████████████| 500/500 [100%] in 0.0s (238268.69/s) 
-11:07:46 [WARNING] fetching state diff for 2893 transactions
-|████████████████████████████████████████| 2893/2893 [100%] in 0.0s (157236.42/s) 
+<pre>python3 -m invconplus.main --address 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
+16:26:35 [WARNING] 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
+16:26:35 [WARNING] cached record number 11
+16:26:38 [WARNING] 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a has transactions no less than 11
+16:26:38 [WARNING] size of transactions to analyze:11
+|████████████████████████████████████████| 11/11 [100%] in 0.0s (55627.05/s) 
+16:26:38 [WARNING] fetching state diff for 11 transactions
+|████████████████████████████████████████| 11/11 [100%] in 0.0s (102037.24/s) 
+16:26:39 [INFO] &apos;solc --standard-json --allow-paths /home1/chengxuan/Documents/InvCon&apos; running
+main contract:  TokenERC20
+tokenRecipient
+TokenERC20
+16:26:39 [WARNING] createInitialPptsForFunction for approve(_spender,_value)
+16:26:39 [WARNING] createInitialPptsForFunction for transferFrom(_from,_to,_value)
+16:26:39 [WARNING] createInitialPptsForFunction for burn(_value)
+16:26:39 [WARNING] createInitialPptsForFunction for burnFrom(_from,_value)
+16:26:39 [WARNING] createInitialPptsForFunction for transfer(_to,_value)
+16:26:39 [WARNING] createInitialPptsForFunction for approveAndCall(_spender,_value,_extraData)
+16:26:39 [WARNING] createInitialPptsForContract...
+**********
 
-...
+burnFrom(_from,_value)
+{VarInfo(name=&apos;totalSupply&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d652770&gt;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=None), VarInfo(name=&apos;_value&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d652170&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;allowance[_from][msg.sender]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc42bf0&gt;), VarInfo(name=&apos;balanceOf[_from]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc42530&gt;)}
+[]
+**********
 
-ori(Sum(userGameId[...])) >= ori(Sum(pendingReturns[...]))
-ori(Sum(userGameId[...])) <= Sum(userGameId[...])
-ori(Sum(userGameId[...])) >= Sum(pendingReturns[...])
-ori(Sum(pendingReturns[...])) <= Sum(userGameId[...])
-ori(Sum(pendingReturns[...])) == Sum(pendingReturns[...])
-ori(Sum(pendingReturns[...])) >= Sum(pendingReturns[...])
-ori(Sum(pendingReturns[...])) <= Sum(pendingReturns[...])
-Sum(userGameId[...]) >= Sum(pendingReturns[...])
+burn(_value)
+{VarInfo(name=&apos;totalSupply&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d652770&gt;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=None), VarInfo(name=&apos;_value&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d651db0&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;balanceOf[msg.sender]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc42ec0&gt;)}
+[]
+**********
+
+TokenERC20(initialSupply,tokenName,tokenSymbol)
+{VarInfo(name=&apos;decimals&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d652530&gt;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=None), VarInfo(name=&apos;name&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d61c880&gt;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=None), VarInfo(name=&apos;symbol&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d652440&gt;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=None), VarInfo(name=&apos;balanceOf[msg.sender]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc43880&gt;), VarInfo(name=&apos;tokenName&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d61fdf0&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;initialSupply&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d61c520&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;tokenSymbol&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d61feb0&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;totalSupply&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d652770&gt;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=None)}
+[]
+**********
+
+transferFrom(_from,_to,_value)
+{VarInfo(name=&apos;_value&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d6510c0&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;allowance[_from][msg.sender]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc43820&gt;)}
+[]
+**********
+
+approveAndCall(_spender,_value,_extraData)
+{VarInfo(name=&apos;_spender&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d651720&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;spender&apos;, type=&lt;slither.core.solidity_types.user_defined_type.UserDefinedType object at 0x7c6d7cdc08b0&gt;, vartype=&lt;VarType.LOCALVAR: 2&gt;, derivation=None)}
+[]
+**********
+
+transfer(_to,_value)
+set()
+[]
+**********
+
+approve(_spender,_value)
+{VarInfo(name=&apos;_value&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d650580&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;allowance[msg.sender][_spender]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc9d1b0&gt;)}
+[]
+**********
+
+_transfer(_from,_to,_value)
+{VarInfo(name=&apos;previousBalances&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d6f0640&gt;, vartype=&lt;VarType.LOCALVAR: 2&gt;, derivation=None), VarInfo(name=&apos;balanceOf[_from]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc9d600&gt;), VarInfo(name=&apos;_value&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d61f580&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None), VarInfo(name=&apos;balanceOf[_to]&apos;, type=&apos;uint256&apos;, vartype=&lt;VarType.STATEVAR: 0&gt;, derivation=&lt;invconplus.derivation.binary.MappingItem.MappingItem object at 0x7c6d7cc9d9f0&gt;), VarInfo(name=&apos;_to&apos;, type=&lt;slither.core.solidity_types.elementary_type.ElementaryType object at 0x7c6d7d61cd90&gt;, vartype=&lt;VarType.TXVAR: 1&gt;, derivation=None)}
+[]
+16:26:39 [WARNING] 0x41f8270928fd02877caeb2f4a9329c2fa99e364314b10d8d1e6994150dd1d84etransfer(_to,_value)
+16:26:39 [WARNING] 0x4a76df5febaf4b8605e93804caf08088cc90a12b0ab20398b67ebc0f8be3d341approve(_spender,_value)
+16:26:39 [WARNING] 0x4ffff6c33fb3fd4382271d55b1902bfd22df92196b4da34d2d16a839333897fctransferFrom(_from,_to,_value)
+16:26:39 [WARNING] 0x871ec44b88e46ce756f651a804213c87fd8bcf87dffaf2159dcd3e6b1b8c03dctransfer(_to,_value)
+16:26:39 [WARNING] 0x2890b1f94dcca062584589d2d9c90f95c96e7a6ebef5d6d7353694c0f232721etransferFrom(_from,_to,_value)
+16:26:39 [WARNING] 0x2a595385f098f70d5388b9d4605c0d68c68cf17e35895b4e622291a4ed3ae6b8transfer(_to,_value)
+16:26:39 [WARNING] 0xc3ce7d12c427e9534282ff65880b287206e8898c233b084ccc276bc22b045337transfer(_to,_value)
+16:26:39 [WARNING] 0xda9403c84fad19886a44ab76b42326cc4586aae8cccebb9ec9fa63ce3f160487transfer(_to,_value)
+16:26:39 [WARNING] 0xa36c795bc3e351b65fe8862b8216760247f69a5826f800768344a0aabfac3e61approve(_spender,_value)
+16:26:39 [WARNING] 0xa18458c239fefd9d104e134ebc65808ba9659e2d68b65a4e62aac9ae3e79c22dtransferFrom(_from,_to,_value)
+</pre>
 ```
 
 ## Advanced Usage
