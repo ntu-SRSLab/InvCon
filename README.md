@@ -9,7 +9,7 @@ InvCon+ is a dynamic invariant detector for Solidity smart contracts and it also
 + Python3 (tested on 3.10) 
 + [TrueBlocks](https://trueblocks.io/docs/). Indexing for EVM-based blockchains. 
 TrueBlocks runs on Linux and Mac and do not support Windows. Please follow its detailed installation instructions from [https://trueblocks.io/docs/install/install-core/](https://trueblocks.io/docs/install/install-core/). 
-When ``chifra`` command is installed and properly configured. Please run ``chifra init -a`` to cache all blockchain indexing dataset, where the storage use is estimated to be 60GB-80GB.
+When ``chifra`` command is installed and properly configured. Please run ``chifra init --all`` to cache all blockchain indexing dataset, where the storage use is estimated to be 60GB-80GB.
 + QuickNode API key. (Currently provide a one and will delete it later)
 + Etherscan API key. (Currently has hardcode it and will delete it later)
 
@@ -22,14 +22,14 @@ cd InvCon
 # install python dependencies
 pip3 install -r requirements.txt
 # test it on a given example whose data has been cached
-bash scripts/batch.sh # or python3 -m invconplus.main --address 0x7e0178e1720e8b3a52086a23187947f35b6f3fc4
+bash scripts/batch.sh # or python3 -m invconplus.main --address 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
 ```
 
 Time estimation: 2 minutes (on modern hardware with good network condition)
 
 If successful, at the end of the command line output should look similar to the following:
 ```sh
-<pre>python3 -m invconplus.main --address 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
+python3 -m invconplus.main --address 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
 16:26:35 [WARNING] 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
 16:26:35 [WARNING] cached record number 11
 16:26:38 [WARNING] 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a has transactions no less than 11
@@ -37,7 +37,7 @@ If successful, at the end of the command line output should look similar to the 
 |████████████████████████████████████████| 11/11 [100%] in 0.0s (55627.05/s) 
 16:26:38 [WARNING] fetching state diff for 11 transactions
 |████████████████████████████████████████| 11/11 [100%] in 0.0s (102037.24/s) 
-16:26:39 [INFO] &apos;solc --standard-json --allow-paths /home1/chengxuan/Documents/InvCon&apos; running
+16:26:39 [INFO] &apos;solc --standard-json running
 main contract:  TokenERC20
 tokenRecipient
 TokenERC20
@@ -98,7 +98,6 @@ _transfer(_from,_to,_value)
 16:26:39 [WARNING] 0xda9403c84fad19886a44ab76b42326cc4586aae8cccebb9ec9fa63ce3f160487transfer(_to,_value)
 16:26:39 [WARNING] 0xa36c795bc3e351b65fe8862b8216760247f69a5826f800768344a0aabfac3e61approve(_spender,_value)
 16:26:39 [WARNING] 0xa18458c239fefd9d104e134ebc65808ba9659e2d68b65a4e62aac9ae3e79c22dtransferFrom(_from,_to,_value)
-</pre>
 ```
 
 ## Advanced Usage
