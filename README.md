@@ -39,6 +39,13 @@ bash scripts/batch.sh # or python3 -m invconplus.main --address 0x0148650ef8e216
 
 Time estimation: 2 minutes (on modern hardware with good network condition)
 
+| Contract Address                           | Name                                      | Transactions | Data Download | Diff Download | Run Time |
+|--------------------------------------------|-------------------------------------------|-------------:|--------------:|--------------:|---------:|
+| 0x00765EaABedBC0eC71e922178B5cF6f5632EC324 | AlgorToken                                |         4660 |       2616.3s |        261.4s |       8s |
+| 0x007fa227D5d693F7f29e27B1FA028fd2051Ed072 | ExchangeRate                              |            3 |         17.2s |          2.7s |      <1s |
+| 0x22d982a8B875Cc0f8994cd8a4a70872161fdc000 | GizerTokenPresale                         |            2 |         36.8s |          2.5s |      <1s |
+| 0x2da4bb51E59D0b156B5e19Bb3F8eFf0279E1ffA2 | PuertoRicoHurricaneRelief_SaintCoinCaller |            4 |         25.1s |          4.6s |      <1s |
+
 If successful, at the end of the command line output should look similar to the following:
 ```sh
 python3 -m invconplus.main --address 0x0148650ef8e216e8d0999fe8d4b5c1871b71771a
