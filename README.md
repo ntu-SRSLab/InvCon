@@ -2,7 +2,7 @@
 ---
 The latest version of this repository can be found at [NTU-SRSLab](git@github.com:ntu-SRSLab/InvCon.git).
 
-InvCon+ is a dynamic invariant detector for Solidity smart contracts and it also integrate with a modular verifier VeriSol to produce correct invariants.
+InvCon+ is a dynamic invariant detector for Solidity smart contracts and it also integrate with the modular verifier [VeriSol](https://github.com/microsoft/verisol) to produce correct invariants.
 
 ## Prerequisites
 + Mac, Linux (tested on Ubuntu 20.04 LTS)
@@ -11,32 +11,46 @@ InvCon+ is a dynamic invariant detector for Solidity smart contracts and it also
 TrueBlocks runs on Linux and Mac and do not support Windows. Please follow its detailed installation instructions from [https://trueblocks.io/docs/install/install-core/](https://trueblocks.io/docs/install/install-core/). 
 When ``chifra`` command is installed and properly configured. Please run ``chifra init --all`` to cache all blockchain indexing dataset, where the storage use is estimated to be 60GB-80GB.
 + [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html). Managing python environments for different versions of python. 
-+ QuickNode API key. (Currently provide a one and will delete it later)
-+ Etherscan API key. (Currently has hardcode it and will delete it later)
++ QuickNode API key.
++ Etherscan API key.
 
 ## Get Started
-Clone this repository.
-```sh 
-# clone this repository
+Clone this repository:
+```
 git clone git@github.com:ntu-SRSLab/InvCon.git
-# Change to the invcon dir
+```
+
+Change to the Invcon+ directory:
+```
 cd InvCon
 ```
 
-Create a new anaconda environment with python 3.10 and activate the environment.
-```sh
+Create a new Anaconda environment with Python 3.10:
+```
 conda create -n invcon+ python=3.10
+```
+
+Activate the environment:
+```
 conda activate invcon+
 ```
 
-Install the required python dependencies.
-```sh
-# install python dependencies
+Install the required Python dependencies:
+```
 pip3 install -r requirements.txt
-# test it on a given example whose data has been cached
-bash scripts/batch.sh # or python3 -m invconplus.main --address 0x00765EaABedBC0eC71e922178B5cF6f5632EC324
 ```
 
+Test it on a given example whose data has been cached:
+```
+bash scripts/batch.sh
+```
+
+Or you can invoke Invcon+ directly with specific contract address:
+```
+python3 -m invconplus.main --address 0x00765EaABedBC0eC71e922178B5cF6f5632EC324
+```
+
+## Time Estimation
 Time estimation is shown below (on modern hardware with good network condition)
 
 | name | No. of Transactions | Diff Download | Data Download | Run Time | addr |
@@ -44,9 +58,10 @@ Time estimation is shown below (on modern hardware with good network condition)
 | AlgorToken | 4660 | 261.4 | 2616.3 | 8s | 0x00765EaABedBC0eC71e922178B5cF6f5632EC324 |
 | ExchangeRate | 3 | 2.7 | 17.2 | <1s | 0x007fa227D5d693F7f29e27B1FA028fd2051Ed072 |
 | GizerTokenPresale | 2 | 2.5 | 36.8 | <1s | 0x22d982a8B875Cc0f8994cd8a4a70872161fdc000 |
-| PuertoRicoHurricaneRelief_SaintCoinCaller | 4 | 4.6 | 25.1 | <1s | 0x2da4bb51E59D0b156B5e19Bb3F8eFf0279E1ffA2 |
+| PuertoRicoHurricaneRelief | 4 | 4.6 | 25.1 | <1s | 0x2da4bb51E59D0b156B5e19Bb3F8eFf0279E1ffA2 |
 | MESH | 15922 | 558.4 | 2376.3 | 23s | 0x01F2AcF2914860331C1Cb1a9AcecDa7475e06Af8 |
 
+## Sample Output
 If successful, at the end of the command line output should look similar to the following:
 <details>
   <summary>View example bash output (click to expand)</summary>
