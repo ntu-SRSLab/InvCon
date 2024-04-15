@@ -49,6 +49,7 @@ Time estimation: 2 minutes (on modern hardware with good network condition)
 If successful, at the end of the command line output should look similar to the following:
 <details>
   <summary>View example bash output (click to expand)</summary>
+
 ```sh
 InvCon % python3 -m invconplus.main --address 0x00765EaABedBC0eC71e922178B5cF6f5632EC324
 01:44:58 [WARNING] 0x00765EaABedBC0eC71e922178B5cF6f5632EC324
