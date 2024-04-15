@@ -1095,8 +1095,8 @@ ori(decimals) != totalSupply
 Sum(balances[...]) == totalSupply
 Sum(balances[...]) >= totalSupply
 Sum(balances[...]) <= totalSupply
-</details>
 ```
+</details>
 
 ## Advanced Usage
 
