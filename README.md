@@ -10,15 +10,27 @@ InvCon+ is a dynamic invariant detector for Solidity smart contracts and it also
 + [TrueBlocks](https://trueblocks.io/docs/). Indexing for EVM-based blockchains. 
 TrueBlocks runs on Linux and Mac and do not support Windows. Please follow its detailed installation instructions from [https://trueblocks.io/docs/install/install-core/](https://trueblocks.io/docs/install/install-core/). 
 When ``chifra`` command is installed and properly configured. Please run ``chifra init --all`` to cache all blockchain indexing dataset, where the storage use is estimated to be 60GB-80GB.
++ [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html). Managing python environments for different versions of python. 
 + QuickNode API key. (Currently provide a one and will delete it later)
 + Etherscan API key. (Currently has hardcode it and will delete it later)
 
 ## Get Started
-Clone this repository, install all the python libraries and test on a given examples whose transaction data has been cached.
+Clone this repository.
 ```sh 
 # clone this repository
 git clone git@github.com:ntu-SRSLab/InvCon.git
+# Change to the invcon dir
 cd InvCon
+```
+
+Create a new anaconda environment with python 3.10 and activate the environment.
+```sh
+conda create -n invcon+ python=3.10
+conda activate invcon+
+```
+
+Install the required python dependencies.
+```sh
 # install python dependencies
 pip3 install -r requirements.txt
 # test it on a given example whose data has been cached
@@ -104,4 +116,3 @@ _transfer(_from,_to,_value)
 
 Other than dynamic invariant detection, InvCon also includes a module to facilitate formal verification on the invariant results.
 To use this formal verification procedure 
-
