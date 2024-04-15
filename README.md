@@ -53,13 +53,13 @@ python3 -m invconplus.main --address 0x00765EaABedBC0eC71e922178B5cF6f5632EC324
 ## Time Estimation
 Time estimation is shown below (on modern hardware with good network condition)
 
-| name | No. of Transactions | Diff Download | Data Download | Run Time | addr |
-|---|---|---|---|---|---|
-| AlgorToken | 4660 | 261.4 | 2616.3 | 8s | 0x00765EaABedBC0eC71e922178B5cF6f5632EC324 |
-| ExchangeRate | 3 | 2.7 | 17.2 | <1s | 0x007fa227D5d693F7f29e27B1FA028fd2051Ed072 |
-| GizerTokenPresale | 2 | 2.5 | 36.8 | <1s | 0x22d982a8B875Cc0f8994cd8a4a70872161fdc000 |
-| PuertoRicoHurricaneRelief | 4 | 4.6 | 25.1 | <1s | 0x2da4bb51E59D0b156B5e19Bb3F8eFf0279E1ffA2 |
-| MESH | 15922 | 558.4 | 2376.3 | 23s | 0x01F2AcF2914860331C1Cb1a9AcecDa7475e06Af8 |
+| Name | No. of Transactions | Data Download | Diff Download | Run Time | Address |
+|---|---:|---:|---:|---:|---|
+| MESH | 15922 | 2376.3 | 558.4 | 23s | 0x01F2AcF2914860331C1Cb1a9AcecDa7475e06Af8 |
+| AlgorToken | 4660 | 2616.3 | 261.4 | 8s | 0x00765EaABedBC0eC71e922178B5cF6f5632EC324 |
+| PuertoRicoHurricaneRelief | 4 | 25.1 | 4.6 | <1s | 0x2da4bb51E59D0b156B5e19Bb3F8eFf0279E1ffA2 |
+| ExchangeRate | 3 | 17.2 | 2.7 | <1s | 0x007fa227D5d693F7f29e27B1FA028fd2051Ed072 |
+| GizerTokenPresale | 2 | 36.8 | 2.5 | <1s | 0x22d982a8B875Cc0f8994cd8a4a70872161fdc000 |
 
 ## Sample Output
 If successful, at the end of the command line output should look similar to the following:
