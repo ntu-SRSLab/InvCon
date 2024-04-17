@@ -2,6 +2,7 @@ import json
 import requests
 import time
 import traceback
+import invconplus.const as invconst 
 
 def fetchAllRuntimeInformation(tx_hash):
     maxTimes = 4
@@ -9,7 +10,7 @@ def fetchAllRuntimeInformation(tx_hash):
     while count < maxTimes:
         count += 1
         try:
-            url = 'https://methodical-orbital-grass.quiknode.pro/fe07745a7483ec72082179b92c20cd104938bc8b/'
+            url = f'https://methodical-orbital-grass.quiknode.pro/{invconst.QUICKNODE_API_KEY}/'
             myobj = {"method":"trace_replayTransaction","params":[tx_hash,["vmTrace", "trace", "stateDiff"]],"id":1,"jsonrpc":"2.0"}
             x = requests.post(url, json = myobj)
             data = json.loads(x.text)
@@ -26,7 +27,7 @@ def fetchVmTrace(tx_hash):
     while count < maxTimes:
         count += 1
         try:
-            url = 'https://methodical-orbital-grass.quiknode.pro/fe07745a7483ec72082179b92c20cd104938bc8b/'
+            url = f'https://methodical-orbital-grass.quiknode.pro/{invconst.QUICKNODE_API_KEY}/'
             myobj = {"method":"trace_replayTransaction","params":[tx_hash,["vmTrace"]],"id":1,"jsonrpc":"2.0"}
             x = requests.post(url, json = myobj)
             data = json.loads(x.text)
@@ -46,7 +47,7 @@ def fetchStateDiff(tx_hash):
     while count < maxTimes:
         count += 1
         try:
-            url = 'https://methodical-orbital-grass.quiknode.pro/fe07745a7483ec72082179b92c20cd104938bc8b/'
+            url = f'https://methodical-orbital-grass.quiknode.pro/{invconst.QUICKNODE_API_KEY}/'
             myobj = {"method":"trace_replayTransaction","params":[tx_hash,["stateDiff"]],"id":1,"jsonrpc":"2.0"}
             x = requests.post(url, json = myobj)
             data = json.loads(x.text)

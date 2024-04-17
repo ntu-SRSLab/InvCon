@@ -1118,4 +1118,4 @@ Sum(balances[...]) <= totalSupply
 ## Advanced Usage
 
 Other than dynamic invariant detection, InvCon also includes a module to facilitate formal verification on the invariant results.
-To use this formal verification procedure 
+This part will be updated in the future.

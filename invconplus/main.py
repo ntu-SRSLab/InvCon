@@ -2,16 +2,16 @@ import argparse
 import logging
 import json 
 import os 
+import time 
 from invconplus.model.Replayer import TransactionReplayer
 from invconplus.engine import InvConPlus
 from invconplus.ppt import PptTopLevel
 from invconplus.trace.traceslice import TraceSlice, Trace, covertTx2Event, default
-from invconplus.const import RESULT_DIR 
-import time 
+import invconplus.const as invconst 
 
 def main(address, configuration=None, maxCount=500, minSupport=50, training_ratio=None, hack_tx = None):
     logging.RootLogger.root.handlers = []
-    handlers = [logging.FileHandler(os.path.join(RESULT_DIR, '../invcon.log'), 'w', encoding='utf-8'),
+    handlers = [logging.FileHandler(os.path.join(invconst.RESULT_DIR, '../invcon.log'), 'w', encoding='utf-8'),
                 logging.StreamHandler()]
     logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%H:%M:%S',
                         handlers=handlers)
@@ -31,8 +31,8 @@ def main(address, configuration=None, maxCount=500, minSupport=50, training_rati
     read_start_time = time.time()
     tx = txreplayer.readPerTx()
     statistics["readTx"].append(time.time() - read_start_time)
-    if not os.path.exists(RESULT_DIR):
-        os.mkdir(RESULT_DIR)
+    if not os.path.exists(invconst.RESULT_DIR):
+        os.mkdir(invconst.RESULT_DIR)
 
     if hack_tx is not None:
         maxCount = txreplayer.total_transaction_count
@@ -65,7 +65,7 @@ def main(address, configuration=None, maxCount=500, minSupport=50, training_rati
                         result_tests[tx.tx_hash].append(dict(func=tx.func, reverted = tx.hasRevert(), violated_invs = [inv.__str__() for inv in false_invs]))
             if training_ratio is not None:
                 if count >= int(txreplayer.total_transaction_count*training_ratio) and not test_mode:
-                    invcon.generate_invariants(inv_file= os.path.join(RESULT_DIR, address + "-" +txreplayer.contractName+".training.inv"))
+                    invcon.generate_invariants(inv_file= os.path.join(invconst.RESULT_DIR, address + "-" +txreplayer.contractName+".training.inv"))
                     test_mode = True
           
     else:
@@ -89,18 +89,18 @@ def main(address, configuration=None, maxCount=500, minSupport=50, training_rati
                         ppt.loadSliceEvent(tx=tx, slice_states= pre_slice_states + post_slice_states)
             count += 1
         
-        invcon.generate_trace_slice_invariants(inv_file = os.path.join(RESULT_DIR, address+"-"+ txreplayer.contractName+"-trace.inv"))
-        json.dump(slicer.to_list(), open(os.path.join(RESULT_DIR, address + "-" + txreplayer.contractName + "-" + "trace_slices.json"), "w"), indent=4)
+        invcon.generate_trace_slice_invariants(inv_file = os.path.join(invconst.RESULT_DIR, address+"-"+ txreplayer.contractName+"-trace.inv"))
+        json.dump(slicer.to_list(), open(os.path.join(invconst.RESULT_DIR, address + "-" + txreplayer.contractName + "-" + "trace_slices.json"), "w"), indent=4)
     
     if test_mode:
-        json.dump(result_tests, open(os.path.join(RESULT_DIR, address+"-"+txreplayer.contractName+".test.violation.inv"), "w"), indent=4)
+        json.dump(result_tests, open(os.path.join(invconst.RESULT_DIR, address+"-"+txreplayer.contractName+".test.violation.inv"), "w"), indent=4)
 
     if count > minSupport:
         logging.warning("Generating invariants... for {0} txs".format(count))
         logging.warning("Time used: {0} seconds".format(str(time.time() - start_time)))
         logging.warning("Time Usage Detail: initializePpts({0}), readTx({1}), processData({2})".format( statistics["initializePpts"], sum(statistics["readTx"]), sum(statistics["processData"])))
-        invcon.generate_invariants(inv_file= os.path.join(RESULT_DIR, address + "-" +txreplayer.contractName+".inv"))
-        txreplayer.toStateJson(os.path.join(RESULT_DIR, address + "-" +txreplayer.contractName+".json"))
+        invcon.generate_invariants(inv_file= os.path.join(invconst.RESULT_DIR, address + "-" +txreplayer.contractName+".inv"))
+        txreplayer.toStateJson(os.path.join(invconst.RESULT_DIR, address + "-" +txreplayer.contractName+".json"))
 
 GameChannel_Address = "0x7e0178e1720e8b3a52086a23187947f35b6f3fc4"
 Token_Address = "0x1dac5649e2a0c943ffc4211d708f6ddde4742fd6"
@@ -112,6 +112,12 @@ if __name__ == "__main__":
                         help='address of Ethereum smart contract,\
                               default (0x7e0178e1720e8b3a52086a23187947f35b6f3fc4) for GameChannel contract)')
     
+    parser.add_argument('--quickNode_api_key', type=str, required=False, default=None, 
+                        help='set your own quicknode api key (https://www.quicknode.com/pricing)')
+    
+    parser.add_argument('--etherscan_api_key', type=str, required=False, default=None, 
+                        help='set your own etherscan api key (https://etherscan.io/)')
+    
     parser.add_argument('--configuration', type=str, required=False, default=None, 
                         help='configuration of slice criteria (.json),\
                               (e.g., ./invconplus/slicecriteria/GameChannel.json)')
@@ -119,6 +125,7 @@ if __name__ == "__main__":
     parser.add_argument('--output_dir', type=str, required=False, default=None, 
                         help='directory where the invariant results will be stored')
     
+
     parser.add_argument('--training_ratio', type=float, required=False, default=None, 
                         help='the proportion of transactions used training to produce invariants,\
                               (default, 1)')
@@ -136,7 +143,13 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     if args.output_dir is not None:
-        RESULT_DIR = args.output_dir
+        invconst.RESULT_DIR = args.output_dir
 
+    if args.quickNode_api_key is not None:
+        invconst.QUICKNODE_API_KEY = args.quickNode_api_key
+    
+    if args.etherscan_api_key is not None:
+        invconst.ETHERSCAN_API_KEY = args.etherscan_api_key
+    
     main(args.address, args.configuration, args.maxCount, args.minSupport, args.training_ratio, args.hack_tx)
     

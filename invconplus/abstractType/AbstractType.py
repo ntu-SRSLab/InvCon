@@ -32,6 +32,7 @@ from invconplus.derivation.unary.ArrayWildcard import ArrayWildcard
 
 
 from invconplus.abstractType.DataDependency import FuncDataDependency, ContractDependency
+import invconplus.const as invconst
 
 # text =""" ParserError: ParserError: Source "@openzeppelin/contracts/proxy/Proxy.sol" not found: File not found. Searched the following locations: ""."""
 p =  re.compile("Source \"(.+)\"\s+")
@@ -59,7 +60,7 @@ def rename(address_or_workdir, missing_files: List[str]):
             print(code)
 
 def compileContract(address):
-    cc = CryticCompile(target="mainet:{0}".format(address), etherscan_api_key="SDI5QEC2UAY1CX4C1VPXC4WE9HIMH2SF1C")
+    cc = CryticCompile(target="mainet:{0}".format(address), etherscan_api_key=f"{invconst.ETHERSCAN_API_KEY}")
     slither = Slither(cc)
     if len(slither._crytic_compile.filenames) == 1:
         mainContract = list(slither._crytic_compile.filenames)[0].relative.split(".etherscan.io-")[1].split(".sol")[0]
